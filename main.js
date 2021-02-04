@@ -1,14 +1,14 @@
 // VOORRAAD ARRAY MET TV'S
 const inventory = [
 	{
-		type: "43PUS6504/12",
-		name: "4K TV",
-		brand: "Philips",
+		type: '43PUS6504/12',
+		name: '4K TV',
+		brand: 'Philips',
 		price: 379,
 		availableSizes: [43, 50, 58, 65],
 		refreshRate: 50,
-		screenType: "LED",
-		screenQuality: "Ultra HD/4K",
+		screenType: 'LED',
+		screenQuality: 'Ultra HD/4K',
 		smartTv: true,
 		options: {
 			wifi: true,
@@ -21,14 +21,14 @@ const inventory = [
 		sold: 2,
 	},
 	{
-		type: "NH3216SMART",
-		name: "HD smart TV",
-		brand: "Nikkei",
+		type: 'NH3216SMART',
+		name: 'HD smart TV',
+		brand: 'Nikkei',
 		price: 159,
 		availableSizes: [32],
 		refreshRate: 100,
-		screenType: "LED",
-		screenQuality: "HD ready",
+		screenType: 'LED',
+		screenQuality: 'HD ready',
 		smartTv: true,
 		options: {
 			wifi: true,
@@ -41,14 +41,14 @@ const inventory = [
 		sold: 4,
 	},
 	{
-		type: "QE55Q60T",
-		name: "4K QLED TV",
-		brand: "Samsung",
+		type: 'QE55Q60T',
+		name: '4K QLED TV',
+		brand: 'Samsung',
 		price: 709,
 		availableSizes: [43, 50, 55, 58, 65],
 		refreshRate: 60,
-		screenType: "QLED",
-		screenQuality: "Ultra HD/4K",
+		screenType: 'QLED',
+		screenQuality: 'Ultra HD/4K',
 		smartTv: true,
 		options: {
 			wifi: true,
@@ -61,14 +61,14 @@ const inventory = [
 		sold: 0,
 	},
 	{
-		type: "43HAK6152",
-		name: "Ultra HD SMART TV",
-		brand: "Hitachi",
+		type: '43HAK6152',
+		name: 'Ultra HD SMART TV',
+		brand: 'Hitachi',
 		price: 349,
 		availableSizes: [43, 50, 55, 58],
 		refreshRate: 60,
-		screenType: "LCD",
-		screenQuality: "Ultra HD/4K",
+		screenType: 'LCD',
+		screenQuality: 'Ultra HD/4K',
 		smartTv: true,
 		options: {
 			wifi: true,
@@ -81,14 +81,14 @@ const inventory = [
 		sold: 5,
 	},
 	{
-		type: "50PUS7304/12",
-		name: "The One 4K TV",
-		brand: "Philips",
+		type: '50PUS7304/12',
+		name: 'The One 4K TV',
+		brand: 'Philips',
 		price: 479,
 		availableSizes: [43, 50, 55, 58, 65, 70],
 		refreshRate: 50,
-		screenType: "LED",
-		screenQuality: "Ultra HD/4K",
+		screenType: 'LED',
+		screenQuality: 'Ultra HD/4K',
 		smartTv: true,
 		options: {
 			wifi: true,
@@ -101,14 +101,14 @@ const inventory = [
 		sold: 3,
 	},
 	{
-		type: "55PUS7805",
-		name: "4K LED TV",
-		brand: "Philips",
+		type: '55PUS7805',
+		name: '4K LED TV',
+		brand: 'Philips',
 		price: 689,
 		availableSizes: [55],
 		refreshRate: 100,
-		screenType: "LED",
-		screenQuality: "Ultra HD/4K",
+		screenType: 'LED',
+		screenQuality: 'Ultra HD/4K',
 		smartTv: true,
 		options: {
 			wifi: true,
@@ -121,14 +121,14 @@ const inventory = [
 		sold: 3,
 	},
 	{
-		type: "B2450HD",
-		name: "LED TV",
-		brand: "Brandt",
+		type: 'B2450HD',
+		name: 'LED TV',
+		brand: 'Brandt',
 		price: 109,
 		availableSizes: [24],
 		refreshRate: 60,
-		screenType: "LED",
-		screenQuality: "Full HD",
+		screenType: 'LED',
+		screenQuality: 'Full HD',
 		smartTv: false,
 		options: {
 			wifi: false,
@@ -141,14 +141,14 @@ const inventory = [
 		sold: 8,
 	},
 	{
-		type: "32WL1A63DG",
-		name: "HD TV",
-		brand: "Toshiba",
+		type: '32WL1A63DG',
+		name: 'HD TV',
+		brand: 'Toshiba',
 		price: 161,
 		availableSizes: [32],
 		refreshRate: 50,
-		screenType: "LED",
-		screenQuality: "Full HD",
+		screenType: 'LED',
+		screenQuality: 'Full HD',
 		smartTv: false,
 		options: {
 			wifi: false,
@@ -162,7 +162,7 @@ const inventory = [
 	},
 ];
 
-let totalStock = document.querySelector("#totalStock");
+let totalStock = document.querySelector('#total-stock');
 
 // Opdracht 1a
 const unitsLeft = (products) => {
@@ -173,27 +173,42 @@ const unitsLeft = (products) => {
 
 // Opdracht 1b
 totalStock.innerText = unitsLeft(inventory);
-totalStock.style.color = "red";
+totalStock.style.color = '#F74380';
 
 // Opdracht 2a
-const allTVTypes = (products) => products.map((tv) => tv.type);
-console.log("Opdracht 2a: ", allTVTypes(inventory));
+const allTvNames = (products) => products.map((tv) => `${tv.brand} ${tv.name}`);
+console.log('Opdracht 2a: ', allTvNames(inventory));
 
 // Opdracht 2b
-const allSoldOutTVs = (products) => products.filter((tv) => unitsLeft(products) === 0);
-console.log("Opdracht 2b: ", allSoldOutTVs(inventory));
+const allSoldOutTVs = (products) => products.filter((tv) => tv.originalStock === tv.sold);
+console.log('Opdracht 2b: ', allSoldOutTVs(inventory));
 
 // Opdracht 2c
-const ambiLightTVs = (products) => products.filter((tv) => tv.options.ambiLight === true);
-console.log("Opdracht 2c: ", ambiLightTVs(inventory));
+const ambiLightTVs = (products) => products.filter((product) => product.options.ambiLight === true);
+console.log('Opdracht 2c: ', ambiLightTVs(inventory));
 
 // Opdracht 2d
-const sortTvByPrice = (products) => products.sort((tvA, tvB) => tvA.price - tvB.price);
-console.log("Opdracht 2d: ", sortTvByPrice(inventory));
+const sortTvByPrice = (products) =>
+	products.sort((productA, productB) => productA.price - productB.price);
+console.log('Opdracht 2d: ', sortTvByPrice(inventory));
 
 // Opdracht 3a
-const calculateTotalProfit = (products) => {
-	const profitPerItem = products.map((unit) => unitsLeft(products) * unit.price);
-  return profitPerItem.reduce((itemA, itemB) => itemA + itemB);
+const totalRevenuePrognosis = (products) => {
+	const revenuePerItem = products.map((product) => unitsLeft(products) * product.price);
+	return revenuePerItem.reduce((itemA, itemB) => itemA + itemB);
 };
 
+const totalRevenue = document.querySelector('#total-revenue');
+totalRevenue.textContent = `€ ${totalRevenuePrognosis(inventory).toLocaleString('nl-NL')}`;
+totalRevenue.style.color = '#5D87FA';
+
+// Opdracht 3b
+const currentProfit = (products) => {
+	// price * sold
+	const profitPerItem = products.map((product) => product.sold * product.price);
+	return profitPerItem.reduce((itemA, itemB) => itemA + itemB);
+};
+
+const totalProfit = document.querySelector('#total-profit');
+totalProfit.textContent = `€ ${currentProfit(inventory).toLocaleString('nl-NL')}`;
+totalProfit.style.color = '#5CF76A';
