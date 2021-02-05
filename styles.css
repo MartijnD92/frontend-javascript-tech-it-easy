@@ -1,58 +1,115 @@
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
-    padding: 0;
+	box-sizing: border-box;
+	padding: 0;
 }
 
 body {
-    padding: 2em;
-    font-family: 'Poppins', sans-serif;
-    background: #B1D4E0;
-    color: #0C2D48;
-}
-
-h1 {
-    text-align: center;
+	padding: 2em;
+	font-family: 'Poppins', sans-serif;
+	background: #b1d4e0;
+	color: #0c2d48;
 }
 
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
+	display: flex;
+	justify-content: center;
+	text-align: center;
+}
+
+.column {
+	flex-direction: column;
+	margin: 2em 7em;
 }
 
 .block {
-    width: 250px;
-    height: 200px;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 2em;
+	flex-basis: 250px;
+	height: 200px;
+	border-radius: 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-right: 2em;
+	box-shadow: 3px 3px 5px hsla(195, 43%, 40%, 0.4);
+}
+
+.block:last-child {
+	margin: 0;
 }
 
 .block p {
-    margin: 0;
+	margin: 0;
 }
 .description {
-    font-size: 1.2rem;
+	font-size: 1.2rem;
 }
 .number {
-    font-size: 2rem;
+	font-size: 2rem;
 }
 
 .block1 {
-    background: #5D87FA;
+	background: linear-gradient(to left top, hsl(224, 94%, 62%), hsl(224, 94%, 70%));
 }
 .block2 {
-    background: #5CF76A;
+	background: linear-gradient(to left top, hsl(125, 91%, 62%), hsl(125, 91%, 70%));
 }
 .block3 {
-    background: #F74380;
+	background: linear-gradient(to left top, hsl(340, 92%, 62%), hsl(340, 92%, 70%))
 }
 
-.total {
-    font-weight: 700;
+.section-title {
+	align-self: center;
+}
+
+.product-list {
+	width: 100%;
+	text-align: left;
+}
+
+.product-list__item {
+	list-style: none;
+	background: #3cc1e6;
+	padding: 1em;
+	margin-bottom: 0.5em;
+	border-radius: 10px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	position: relative;
+	cursor: pointer;
+}
+
+.product-list__item.active,
+.product-list__item:hover {
+	background: hsl(193, 77%, 50%);
+}
+
+.product-list__item.active {
+    margin: 0;
+    transition: margin 250ms ease;
+}
+
+.product-list__item .price {
+	margin-right: 50px;
+}
+
+.product-list__item::after {
+	content: '\002B';
+	position: absolute;
+	font-size: 20px;
+	font-weight: 700;
+	right: 20px;
+	color: #e8dd48;
+}
+
+.product-list__panel {
+    margin: 0 1em 0.5em 1em;
+	padding: 0 18px;
+	background: hsl(195, 43%, 70%);
+	border-radius: 0 0 10px 10px;
+	overflow: hidden;
+	max-height: 0;
+	transition: max-height 250ms ease-in-out, margin 250ms ease 250ms;
 }

@@ -165,18 +165,18 @@ const inventory = [
 let totalStock = document.querySelector('#total-stock');
 
 // Opdracht 1a
-const unitsLeft = (products) => {
+function unitsLeft(products) {
 	const stockPerItem = products.map((unit) => unit.originalStock - unit.sold);
 	const total = stockPerItem.reduce((itemA, itemB) => itemA + itemB);
 	return total;
-};
+}
 
 // Opdracht 1b
 totalStock.innerText = unitsLeft(inventory);
-totalStock.style.color = '#F74380';
+totalStock.style.color = 'red';
 
 // Opdracht 2a
-const allTvNames = (products) => products.map((tv) => `${tv.brand} ${tv.name}`);
+const allTvNames = (products) => products.map((tv) => `${tv.brand} ${tv.type}`);
 console.log('Opdracht 2a: ', allTvNames(inventory));
 
 // Opdracht 2b
@@ -193,22 +193,97 @@ const sortTvByPrice = (products) =>
 console.log('Opdracht 2d: ', sortTvByPrice(inventory));
 
 // Opdracht 3a
-const totalRevenuePrognosis = (products) => {
-	const revenuePerItem = products.map((product) => unitsLeft(products) * product.price);
+function totalRevenueTarget(products) {
+	const revenuePerItem = products.map((product) => product.originalStock * product.price);
 	return revenuePerItem.reduce((itemA, itemB) => itemA + itemB);
-};
+}
 
 const totalRevenue = document.querySelector('#total-revenue');
-totalRevenue.textContent = `€ ${totalRevenuePrognosis(inventory).toLocaleString('nl-NL')}`;
-totalRevenue.style.color = '#5D87FA';
+totalRevenue.textContent = totalRevenueTarget(inventory).toLocaleString('nl-NL', {
+	style: 'currency',
+	currency: 'EUR',
+});
+totalRevenue.style.color = 'blue';
 
 // Opdracht 3b
-const currentProfit = (products) => {
-	// price * sold
+function currentProfit(products) {
 	const profitPerItem = products.map((product) => product.sold * product.price);
 	return profitPerItem.reduce((itemA, itemB) => itemA + itemB);
-};
+}
 
 const totalProfit = document.querySelector('#total-profit');
-totalProfit.textContent = `€ ${currentProfit(inventory).toLocaleString('nl-NL')}`;
-totalProfit.style.color = '#5CF76A';
+totalProfit.textContent = currentProfit(inventory).toLocaleString('nl-NL', {
+	style: 'currency',
+	currency: 'EUR',
+});
+totalProfit.style.color = 'springgreen';
+
+// Opdracht 4
+function display(product) {
+	const productElement = document.createElement('li');
+	const price = document.createElement('span');
+	const panel = document.createElement('div');
+	const panelText = document.createElement('p');
+
+	productElement.classList.add('product-list__item');
+	price.classList.add('price');
+	panel.classList.add('product-list__panel');
+
+	productElement.textContent = toString(product);
+	price.textContent = formatPrice(product.price);
+	panelText.textContent = screenSizesToString(product);
+
+	const list = document.querySelector('.product-list');
+	list.appendChild(productElement);
+	list.appendChild(panel);
+	productElement.appendChild(price);
+	panel.appendChild(panelText);
+}
+
+for (let i = 0; i < inventory.length; i++) {
+	display(inventory[i]);
+}
+
+// Opdracht 5a
+function toString(product) {
+	return `${product.brand} ${product.type} – ${product.name}`;
+}
+
+// Opdracht 5b
+function formatPrice(productPrice) {
+	return `€ ${productPrice},-`;
+}
+
+// Opdracht 5c
+function screenSizesToString(product) {
+	const screenSizes = product.availableSizes;
+	let string = '';
+	for (let i = 0; i < screenSizes.length; i++) {
+		string += `${screenSizes[i]} inch (${(screenSizes[i] * 2.54).toFixed(0)} cm)`;
+		if (i !== screenSizes.length - 1) {
+			string += ' | ';
+		}
+	}
+	return string;
+}
+
+// TODO: transition van panel margin fixen!
+
+//  *******************
+//   Het volgende staat los van de opdracht
+//  *******************
+
+function accordion() {
+	const items = document.querySelectorAll('.product-list__item');
+	for (let i = 0; i < items.length; i++) {
+		items[i].addEventListener('click', function () {
+			this.classList.toggle('active');
+			const panel = this.nextElementSibling;
+			if (panel.style.maxHeight) {
+				panel.style.maxHeight = null;
+			} else {
+				panel.style.maxHeight = panel.scrollHeight + 'px';
+			}
+		});
+	}
+}
