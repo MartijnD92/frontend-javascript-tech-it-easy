@@ -240,6 +240,7 @@ function display(product) {
 	panel.appendChild(panelText);
 }
 
+// Alle tv's weergeven
 for (let i = 0; i < inventory.length; i++) {
 	display(inventory[i]);
 }
@@ -267,7 +268,46 @@ function screenSizesToString(product) {
 	return string;
 }
 
-// TODO: transition van panel margin fixen!
+// Opdracht 5d & 5e
+// ******
+// Zie opdracht 4
+// ******
+
+//Bonusopdracht
+function filterList(products, query) {
+	const list = document.querySelector('.product-list');
+	while (list.firstChild) {
+		list.removeChild(list.lastChild);
+	}
+
+	const btnContainer = document.querySelector('.btn-container');
+	const btns = btnContainer.querySelectorAll('.btn');
+	for (let i = 0; i < btns.length; i++) {
+		btns[i].addEventListener('click', function () {
+			let current = document.querySelectorAll('.active');
+			current[0].classList.remove('active');
+			this.classList.add('active');
+		});
+	}
+
+	let selectedProducts;
+	switch (query) {
+		case 'price':
+			selectedProducts = sortTvByPrice(products);
+			break;
+		case 'ambilight':
+			selectedProducts = ambiLightTVs(products);
+			break;
+		case 'soldout':
+			selectedProducts = allSoldOutTVs(products);
+			break;
+	}
+
+	for (product of selectedProducts) {
+		display(product);
+	}
+	accordion();
+}
 
 //  *******************
 //   Het volgende staat los van de opdracht

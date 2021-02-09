@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
 *,
 *::before,
 *::after {
@@ -7,7 +9,7 @@
 
 body {
 	padding: 2em;
-	font-family: 'Poppins', sans-serif;
+	font-family: 'Lato', sans-serif;
 	background: #b1d4e0;
 	color: #0c2d48;
 }
@@ -56,7 +58,7 @@ body {
 	background: linear-gradient(to left top, hsl(125, 91%, 62%), hsl(125, 91%, 70%));
 }
 .block3 {
-	background: linear-gradient(to left top, hsl(340, 92%, 62%), hsl(340, 92%, 70%))
+	background: linear-gradient(to left top, hsl(340, 92%, 62%), hsl(340, 92%, 70%));
 }
 
 .section-title {
@@ -73,6 +75,7 @@ body {
 	background: #3cc1e6;
 	padding: 1em;
 	margin-bottom: 0.5em;
+	transition: margin-bottom 500ms ease-in-out;
 	border-radius: 10px;
 	display: flex;
 	justify-content: space-between;
@@ -87,29 +90,71 @@ body {
 }
 
 .product-list__item.active {
-    margin: 0;
-    transition: margin 250ms ease;
+	margin: 0;
+	transition: margin 250ms ease;
+}
+
+.product-list__item.active::before {
+	transform: rotate(45deg);
+}
+
+.product-list__item.active::after {
+	transform: rotate(-45deg);
 }
 
 .product-list__item .price {
 	margin-right: 50px;
 }
 
-.product-list__item::after {
-	content: '\002B';
+.product-list__item::after,
+.product-list__item::before {
+	content: '';
+	width: 17px;
+	height: 4px;
 	position: absolute;
-	font-size: 20px;
-	font-weight: 700;
 	right: 20px;
-	color: #e8dd48;
+	font-size: 2rem;
+	font-weight: 400;
+	border-radius: 4px;
+	background: #e8dd48;
+	transition: transform 250ms ease-in-out;
+}
+
+.product-list__item::before {
+	top: 50%;
+}
+
+.product-list__item::after {
+	top: 50%;
+	transform: rotate(90deg);
 }
 
 .product-list__panel {
-    margin: 0 1em 0.5em 1em;
+	margin: 0 1em 0.5em 1em;
 	padding: 0 18px;
 	background: hsl(195, 43%, 70%);
 	border-radius: 0 0 10px 10px;
 	overflow: hidden;
 	max-height: 0;
-	transition: max-height 250ms ease-in-out, margin 250ms ease 250ms;
+	transition: max-height 250ms cubic-bezier(0.47, 0, 0.75, 0.72), margin 250ms ease 250ms;
+}
+
+.btn-container p {
+	display: inline-block;
+}
+
+.btn {
+	padding: 7px 15px;
+	background: hsl(195, 43%, 70%);
+	border: 0;
+	border-radius: 5px;
+}
+
+.btn.active,
+.btn:hover {
+	background: hsl(195, 43%, 50%);
+}
+
+.show {
+	display: flex;
 }

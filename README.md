@@ -87,7 +87,7 @@ NIKKEI NH3216SMART - HD smart TV
   Dus een input van `[32]` geeft `32 inch (81 cm)` en een input van `[43, 50, 55, 58]` geeft `43 inch (109 cm) | 50 inch (127 cm) | 58 inch (147 cm)`. Zorg ervoor dat je deze functie voor iedere tv zou kunnen gebruiken,
   zowel voor tv's met maar één schermgrootte als met tientallen schermgroottes.
 
-- **Opdracht 5d:** Zorg ervoor de informatie van één van de twee tv's zoals het voorbeeld wordt weergegeven op de pagina.
+- **Opdracht 5d:** Zorg ervoor dat de informatie van één van de twee tv's zoals het voorbeeld wordt weergegeven op de pagina.
   Gebruik hiervoor de functies die je hebt gemaakt in opdracht 5a, 5b en 5c.
 
 - **Opdracht 5e:** Schrijf een functie die ALLE tv's weergeeft op de pagina zoals in het voorbeeld.
